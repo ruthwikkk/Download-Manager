@@ -17,4 +17,6 @@ interface DownloadItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(downloadItems: List<DownloadItem>)
+
+    // todo what other Dao methods will we need.
 }

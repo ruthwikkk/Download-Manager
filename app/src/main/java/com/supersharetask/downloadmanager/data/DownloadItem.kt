@@ -6,15 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 
 @Entity(tableName = "download_items")
-data class DownloadItem(
-    // todo fill in with meaninful data
-) {
-    @Ignore
-    val progressStateFlow: MutableStateFlow<DownloadProgress?> = MutableStateFlow(null)
 
-    data class DownloadProgress(
-        val bytesDownloaded: Long = 0,
-        val totalBytes: Long = 0,
-        var status: DownloadStatus = DownloadStatus.PENDING
-    )
-}
+data class DownloadItem(
+    val status: DownloadStatus
+    // todo fill in with meaningful data
+)

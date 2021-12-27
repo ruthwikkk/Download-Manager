@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: QuiphViewModel by viewModels()
+    private val viewModel: DownloadsViewModel by viewModels()
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -73,37 +73,6 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
         }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.downloadItems.collect { downloadItems ->
-                downloadListAdapter.submitList(downloadItems)
-            }
-        }
     }
 
-    private fun beginDownload(url: String) {
-        downloadService.download(url, onProgress = { downloadItem ->
-            /**
-             * Please check the logs for streaming download progress data
-             */
-            println(
-                "DOWNLOAD STAT -> File Name:${downloadItem.fileName} | " +
-                        "Progress: ${getDownloadPercentage(downloadItem.progress)}"
-            )
-            viewModel.onDownload(downloadItem)
-        })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Intent(this, DownloadService::class.java).also { intent ->
-            bindService(intent, connection, Context.BIND_AUTO_CREATE)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unbindService(connection)
-        isServiceBound = false
-    }
 }
