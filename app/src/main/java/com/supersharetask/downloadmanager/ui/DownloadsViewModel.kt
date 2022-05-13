@@ -10,7 +10,7 @@ import com.supersharetask.downloadmanager.repositories.DownloadsRepository
 
 class DownloadsViewModel(application: Application) : AndroidViewModel(application) {
 
-    val repository = DownloadsRepository()
+    //val repository = DownloadsRepository()
 
     fun onCancelDownload(downloadItem: DownloadItem) {
 

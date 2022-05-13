@@ -1,5 +1,7 @@
+
 package com.supersharetask.downloadmanager.ui
 
+/*
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -71,4 +73,4 @@ object DownloadItemComparator : DiffUtil.ItemCallback<DownloadItem>() {
 
     override fun areContentsTheSame(oldItem: DownloadItem, newItem: DownloadItem) =
         oldItem == newItem
-}
+}*/
